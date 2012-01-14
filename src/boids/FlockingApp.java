@@ -35,7 +35,7 @@ public class FlockingApp {
 
 @SuppressWarnings("serial")
 class FlockingPanel extends JPanel {
-	private static final int TIMER_DELAY = 2;
+	private static final int TIMER_DELAY = 10;
 	
 	private int numBoids = 30;
 	
@@ -48,14 +48,16 @@ class FlockingPanel extends JPanel {
 	private double align_weight = 0.202;
 	private double cohes_weight = 0.001;
 	private double separ_weight = 0.6;
-	private double global_angle = Math.PI;
+	private double align_angle = Math.PI / 1.5;
+	private double cohes_angle = Math.PI;// / 1.5;
+	private double separ_angle = Math.PI;
 	
 	public FlockingPanel() {
 		super();
 		setBackground(Color.white);
-		behaviours.add(new Alignment(align_radius, global_angle, align_weight));
-		behaviours.add(new Cohesion(cohes_radius, global_angle, cohes_weight));
-		behaviours.add(new Separation(separ_radius, global_angle, separ_weight));
+		behaviours.add(new Alignment(align_radius, align_angle, align_weight));
+		behaviours.add(new Cohesion(cohes_radius, cohes_angle, cohes_weight));
+		behaviours.add(new Separation(separ_radius, separ_angle, separ_weight));
 		behaviours.add(new Jitter(0, 0.0, 0.0025, 2.0, 2.0));
 		
 		for (int i = 0; i < numBoids; ++i)

@@ -39,7 +39,13 @@ public class Vec2 {
 	}
 	
 	public double absAngleBetween(Vec2 v) {
-		return 0.0; //TODO fix
+		double adjust180 = 0;
+		Vec2 ab = v.minus(this);
+		if (ab.y() < 0) adjust180 = Math.PI;
+
+		double result = Math.atan(ab.x() / ab.y()) + adjust180;
+		if (0 > result) { /*System.out.println("Flipping!");*/ result *= -1; }
+		return result;
 	}
 	
 	@Override
