@@ -38,14 +38,17 @@ public class Vec2 {
 		return Math.sqrt(x * x + y * y);
 	}
 	
-	public double absAngleBetween(Vec2 v) {
+	public double angleBetween(Vec2 v) {
 		double adjust180 = 0;
 		Vec2 ab = v.minus(this);
 		if (ab.y() < 0) adjust180 = Math.PI;
 
-		double result = Math.atan(ab.x() / ab.y()) + adjust180;
-		if (0 > result) result *= -1;
-		return result;
+		return Math.atan(ab.x() / ab.y()) + adjust180;
+	}
+	
+	public double absAngleBetween(Vec2 v) {
+		double result = angleBetween(v);
+		return (0 > result) ? result * -1 : result;
 	}
 	
 	@Override

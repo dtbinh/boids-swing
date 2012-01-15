@@ -71,10 +71,7 @@ public class Boid {
 	}
 
 	private double getDirection() {
-		double adjust180 = 0;
-		if (v.y() < 0) adjust180 = Math.PI;
-
-		return Math.atan(v.x() / v.y()) + adjust180;
+		return new Vec2().angleBetween(v);
 	}
 
 }
