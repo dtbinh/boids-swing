@@ -19,7 +19,6 @@ public abstract class Behaviour { //TODO consider an interface
 	private boolean isNearby(Boid a, Boid b) {
 		//TODO replace with a 2-KD tree
 		if ((a.pos().minus(b.pos()).magnitude() < radius) && (b.vel().absAngleBetween(a.pos().minus(b.pos())) < angle))
-		//if (a.pos().minus(b.pos()).magnitude() < radius)
 			return true;
 		
 		return false;
@@ -43,6 +42,4 @@ public abstract class Behaviour { //TODO consider an interface
 		Vec2 force = getForce(getNearbyBoids(boids, boid), boid);
 		boid.applyForce(force.scale(weight));
 	}
-	
-//	public double weight() { return weight; }
 }

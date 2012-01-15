@@ -74,7 +74,7 @@ public class Boid {
 		double adjust180 = 0;
 		if (v.y() < 0) adjust180 = Math.PI;
 
-		return Math.atan(v.x() / v.y()) + adjust180; //tan(theta) = opp/adj
+		return Math.atan(v.x() / v.y()) + adjust180;
 	}
 
 }

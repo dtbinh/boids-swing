@@ -88,7 +88,7 @@ class FlockingPanel extends JPanel {
 			boid.update();
 			boid.boundPosition(-25, -25, 625, 625);
 			boid.draw(g2);
-			boid.acc(0.0, 0.0); //TODO momentum?
+			boid.acc(0.0, 0.0);
 		}
 	}
 	

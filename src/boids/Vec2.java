@@ -44,7 +44,7 @@ public class Vec2 {
 		if (ab.y() < 0) adjust180 = Math.PI;
 
 		double result = Math.atan(ab.x() / ab.y()) + adjust180;
-		if (0 > result) { /*System.out.println("Flipping!");*/ result *= -1; }
+		if (0 > result) result *= -1;
 		return result;
 	}
 	
