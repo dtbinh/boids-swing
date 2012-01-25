@@ -18,6 +18,7 @@ public abstract class Behaviour { //TODO consider an interface
 	
 	private boolean isNearby(Boid a, Boid b) {
 		//TODO replace with a 2-KD tree
+		if (a == b) return false; // TODO use this hack
 		if ((a.pos().minus(b.pos()).magnitude() < radius) && (b.vel().absAngleBetween(a.pos().minus(b.pos())) < angle))
 			return true;
 		
@@ -28,7 +29,7 @@ public abstract class Behaviour { //TODO consider an interface
 		//TODO replace with a 2-KD tree
 		ArrayList<Boid> nearbyBoids = new ArrayList<Boid>();
 		
-		if (null != boids && null != current)
+		if (null != boids && null != current && radius != 0 && angle != 0.0) //TODO floating point arith. problem?
 			for (Boid boid : boids)
 				if (boid != current && isNearby(boid, current))
 					nearbyBoids.add(boid);
@@ -42,4 +43,6 @@ public abstract class Behaviour { //TODO consider an interface
 		Vec2 force = getForce(getNearbyBoids(boids, boid), boid);
 		boid.applyForce(force.scale(weight));
 	}
+	
+	public double radius() { return radius; }
 }
