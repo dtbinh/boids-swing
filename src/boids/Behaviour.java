@@ -6,6 +6,7 @@ public abstract class Behaviour { //TODO consider an interface
 	
 	private int radius;
 	private double angle, weight;
+	private boolean invert = false;
 	
 	public Behaviour(int radius, double angle, double weight) {
 		if (0.0 > angle) angle = 0.0;
@@ -41,8 +42,12 @@ public abstract class Behaviour { //TODO consider an interface
 	
 	public void apply(ArrayList<Boid> boids, Boid boid) {
 		Vec2 force = getForce(getNearbyBoids(boids, boid), boid);
+		if (invert) force = force.scale(-1);
 		boid.applyForce(force.scale(weight));
 	}
 	
 	public double radius() { return radius; }
+	
+	public boolean isInverted() { return invert; }
+	public void invert(boolean invert) { this.invert = invert; }
 }
